@@ -48,6 +48,7 @@ function getMax(list) {
 }
 
 function humanify(d1, d2) {
+  try {
   let time = d2 - d1;
   const mins = Math.floor(time / (60 * 1000);
   time -= mins * 60 * 1000;
@@ -60,5 +61,8 @@ function humanify(d1, d2) {
   if (ms > 0) list.push(ms + 'ms');
   if (list.length === 0) return '';
   if (list.length === 1) return list[0];
+  } catch (e) {
+    console.error('FOUND IT ', e);
+  }
   return list.slice(-1).join(', ') + ' and ' + list[list.length - 1];
 }

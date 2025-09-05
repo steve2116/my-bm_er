@@ -5,7 +5,7 @@ const step = 0.10;
 const steps = Math.round((max / step) - (min / step));
 const total = Math.pow(steps, 2);
 
-function cal() {
+function main() {
   const start = Date.now();
   const { o1, o2} = getOs();
 

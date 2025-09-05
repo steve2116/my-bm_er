@@ -50,7 +50,7 @@ function getMax(list) {
 function humanify(d1, d2) {
   try {
   let time = d2 - d1;
-  const mins = Math.floor(time / (60 * 1000);
+  const mins = Math.floor(time / (60 * 1000));
   time -= mins * 60 * 1000;
   const secs = Math.floor(time / 1000);
   time -= secs * 1000;

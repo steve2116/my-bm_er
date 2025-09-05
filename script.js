@@ -1,5 +1,5 @@
 const min = 0.10;
-const max = 10;
+const max = 20;
 const step = 0.10;
 
 const steps = Math.round((max / step) - (min / step));
@@ -15,7 +15,7 @@ function main() {
     for (let ii = min; ii < max; ii += step) {
       const p1 = round((o1 * i) - i - ii);
       const p2 = round((o2 * ii) - i - ii);
-      list2.push({ s1: i, s2: ii, p: Math.min(p1, p2) });
+      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2) });
     }
     list.push(getMax(list2));
   }

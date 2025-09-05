@@ -29,8 +29,8 @@ function display(result) {
 }
 
 function getOs() {
-  const o1 = parseFloat(document.getElementById('o2').value);
-  const o2 = parseFloat(document.getELementById('o2').value);
+  const o1 = parseFloat(getEl('o2').value);
+  const o2 = parseFloat(getEl('o2').value);
   return { o1, o2 };
 }
 

@@ -25,7 +25,7 @@ function main() {
 }
 
 function display(result) {
- document.getElementById('result').innerHTML = result;
+ getEl('result').innerHTML = result;
 }
 
 function getOs() {
@@ -65,4 +65,8 @@ function humanify(d1, d2) {
     console.error('FOUND IT ', e);
   }
   return list.slice(-1).join(', ') + ' and ' + list[list.length - 1];
+}
+
+function getEl(name) {
+  return document.getElementById(name);  
 }

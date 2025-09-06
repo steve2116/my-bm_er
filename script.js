@@ -1,17 +1,26 @@
-const vars = { min: 0.1, max: 10, step: 0.1, steps: 99, total: 9801 };
-
 function main(log = false) {
     const start = Date.now();
-    const { o1, o2, f1, f2 } = getVars();
+    const { min1, min2, max1, max2, step, o1, o2, f1, f2, c1, c2, c1ol, c2ol } =
+        getVars();
+
+    if (log) console.log(min, max, step, o1, o2, f1, f2);
 
     const list = [];
-    for (let i = vars.min; i <= vars.smax; i += vars.step) {
+    for (let i = min1; i <= max1; i += step) {
         const list2 = [];
-        for (let ii = vars.min; ii <= vars.max; ii += vars.step) {
-            let p1 = o1 * i - i;
+        for (let ii = min2; ii <= max2; ii += step) {
+            /* First */
+            let p1 = (o1 - 1) * i;
+            if (c1 > 0 && (p1 > 0 || c1ol)) p1 *= (100 - c1) / 100;
+            if (!f1) p1 -= i;
             if (!f2) p1 -= ii;
-            let p2 = o2 * ii - ii;
+
+            /* Second */
+            let p2 = (o2 - 1) * ii;
+            if (c2 > 0 && (p2 > 0 || c2ol)) p2 *= (100 - c2) / 100;
+            if (!f2) p2 -= ii;
             if (!f1) p2 -= i;
+
             list2.push({
                 s1: round(i),
                 s2: round(ii),
@@ -37,13 +46,26 @@ function display(result) {
 }
 
 function getVars() {
-    const o1 = parseFloat(getEl('o1').value);
-    const o2 = parseFloat(getEl('o2').value);
-    vars.min = parseFloat(getEl('min').value ?? vars.min);
-    vars.max = parseFloat(getEl('max').value ?? vars.max);
-    const f1 = Boolean(getEl('f1').checked ?? false);
-    const f2 = Boolean(getEl('f2').checked ?? false);
-    return { o1, o2, f1, f2 };
+    const min1 = parseFloat(getEl('min1')?.value || 0.1);
+    const min2 = parseFloat(getEl('min2')?.value || 0.1);
+    const max1 = parseFloat(getEl('max1')?.value || 10);
+    const max2 = parseFloat(getEl('max2')?.value || 10);
+    const step = 0.1;
+    return {
+        min1,
+        min2,
+        max1,
+        max2,
+        step,
+        o1: parseFloat(getEl('o1')?.value),
+        o2: parseFloat(getEl('o2')?.value),
+        f1: Boolean(getEl('f1')?.checked || false),
+        f2: Boolean(getEl('f2')?.checked || false),
+        c1: parseInt(getEl('c1')?.value || 0),
+        c2: parseInt(getEl('c2')?.value || 0),
+        c1ol: Boolean(getEl('c1.1')?.value || false),
+        c2ol: Boolean(getEl('c2.1')?.value || false),
+    };
 }
 
 function round(num, dp = 2) {

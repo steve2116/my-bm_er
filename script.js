@@ -1,5 +1,5 @@
 const min = 0.10;
-const max = 1;
+const max = 50;
 const step = 0.10;
 
 const steps = Math.round((max / step) - (min / step));
@@ -60,7 +60,7 @@ function humanify(d1, d2) {
   if (mins > 0) list.push(mins + 'm');
   if (secs > 0) list.push(secs + 's');
   if (ms > 0) list.push(ms + 'ms');
-  if (list.length === 0) return '';
+  if (list.length === 0) return 'instant';
   if (list.length === 1) return list[0];
   return list.slice(-1).join(', ') + ' and ' + list[list.length - 1];
 }

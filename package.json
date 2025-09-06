@@ -1,0 +1,13 @@
+{
+  "name": "my_mb_er",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "author": "steve2116",
+  "devDependencies": {
+    "eslint": "^9.35.0",
+    "prettier": "3.6.2"
+  }
+}

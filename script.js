@@ -1,26 +1,24 @@
-function main(log = false) {
+function main(log = false, logAll = false) {
     const start = Date.now();
     const { min1, min2, max1, max2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol } =
         getVars();
-    const ao1 = l1 ? 1 + (1 / (o1 - 1)) : o1;
-    const ao2 = l2 ? 1 + (1 / (o2 - 1)) : o2;
+    const emax1 = l1 ? round(max1 / o1) : max1;
+    const emax2 = l2 ? round(max2 / o2) : max2;
 
-    if (log) console.log(min1, min2, max1, max2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol);
+    if (log) console.log(JSON.stringify({ min1, min2, max1, max2, emax1, emax2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
 
     const list = [];
-    for (let i = min1; i <= max1; i += step) {
+    for (let i = min1; i <= emax1; i += step) {
         const list2 = [];
-        for (let ii = min2; ii <= max2; ii += step) {
+        for (let ii = min2; ii <= emax2; ii += step) {
             /* First */
-            let p1 = (ao1 - 1) * i;
+            let p1 = o1 * i - i;
             if (c1 > 0 && (p1 > 0 || c1ol)) p1 *= (100 - c1) / 100;
-            if (!f1) p1 -= i;
             if (!f2) p1 -= ii;
 
             /* Second */
-            let p2 = (ao2 - 1) * ii;
+            let p2 = o2 * ii - ii;
             if (c2 > 0 && (p2 > 0 || c2ol)) p2 *= (100 - c2) / 100;
-            if (!f2) p2 -= ii;
             if (!f1) p2 -= i;
 
             list2.push({
@@ -29,10 +27,10 @@ function main(log = false) {
                 p: round(Math.min(p1, p2)),
             });
         }
-        if (log) console.log(list2);
+        if (logAll) console.log(list2);
         list.push(getMax(list2));
     }
-    if (log) console.log(list);
+    if (logAll) console.log(list);
     const best = getMax(list);
     if (log) console.log(best);
     const end = Date.now();
@@ -53,7 +51,7 @@ function getVars() {
         min2: parseFloat(getEl('min2')?.value || 0.1),
         max1: parseFloat(getEl('max1')?.value || 10),
         max2: parseFloat(getEl('max2')?.value || 10),
-        step: 0.1,
+        step: 0.01,
         l1: Boolean(getEl('l1')?.checked || false),
         l2: Boolean(getEl('l2')?.checked || false),
         o1: parseFloat(getEl('o1')?.value),

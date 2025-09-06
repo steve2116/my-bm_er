@@ -34,10 +34,10 @@ function display(result) {
 function getVars() {
   const o1 = parseFloat(getEl('o1').value);
   const o2 = parseFloat(getEl('o2').value);
-  vars.min = parseFloat(getEl('min').value);
-  vars.max = parseFloat(getEl('max').value);
-  const f1 = Boolean(getEl('f1').checked);
-  const f2 = Boolean(getEl('f2').checked);
+  vars.min = parseFloat(getEl('min').value ?? vars.min);
+  vars.max = parseFloat(getEl('max').value ?? vars.max);
+  const f1 = Boolean(getEl('f1').checked ?? false);
+  const f2 = Boolean(getEl('f2').checked ?? false);
   return { o1, o2, f1, f2 };
 }
 
@@ -47,6 +47,8 @@ function round(num, dp = 2) {
 }
 
 function getMax(list) {
+  if (list.length === 0) return;
+  if (list.length === 1) return list[0];
   function compare(current, next) {
     if (current.p < next.p) return next;
     return current;

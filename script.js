@@ -15,7 +15,7 @@ function main(log = false) {
     for (let ii = min; ii <= max; ii += step) {
       const p1 = round((o1 * i) - i - ii);
       const p2 = round((o2 * ii) - i - ii);
-      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2), p1, p2 });
+      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2), p1, p2, step1: [o1*i, (o1*i)-i-ii], step2: [o2*ii, (o2*ii)-i-ii], iii: -i-ii });
     }
     if (log) console.log(list2);
     list.push(getMax(list2));

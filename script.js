@@ -1,26 +1,27 @@
-const min = 0.10;
-const max = 50;
-const step = 0.10;
+const vars = {
+  min: 0.1,
+  max: 10,
+  step: 0.1,
+  steps: 99,
+  total: 9801
+};
 
-const steps = Math.round((max / step) - (min / step));
-const total = Math.pow(steps, 2);
-
-function main(log = false) {
+function main() {
   const start = Date.now();
-  const { o1, o2 } = getOs();
+  const { o1, o2, f1, f2 } = getVars();
 
   const list = [];
-  for (let i = min; i <= max; i += step) {
+  for (let i = vars.min; i <= vars.smax; i += vars.step) {
     const list2 = [];
-    for (let ii = min; ii <= max; ii += step) {
-      const p1 = round((o1 * i) - i - ii);
-      const p2 = round((o2 * ii) - i - ii);
-      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2), p1, p2, step1: [o1*i, (o1*i)-i-ii], step2: [o2*ii, (o2*ii)-i-ii], iii: -i-ii });
+    for (let ii = vars.min; ii <= vars.max; ii += vars.step) {
+      let p1 = (o1 * i) - i;
+      if (!f2) p1 -= ii;
+      let p2 = (o2 * ii) - ii;
+      if (!f1) p2 -= i;
+      list2.push({ s1: round(i), s2: round(ii), p: round(Math.min(p1, p2)) });
     }
-    if (log) console.log(list2);
     list.push(getMax(list2));
   }
-  if (log) console.log(list);
   const best = getMax(list);
   const end = Date.now();
   display(`s1: £${best.s1.toFixed(2)}, s2: £${best.s2.toFixed(2)}, p: £${best.p.toFixed(2)}, Time spent: ${humanify(start, end)}`);
@@ -30,10 +31,14 @@ function display(result) {
  getEl('result').innerHTML = result;
 }
 
-function getOs() {
+function getVars() {
   const o1 = parseFloat(getEl('o1').value);
   const o2 = parseFloat(getEl('o2').value);
-  return { o1, o2 };
+  vars.min = parseFloat(getEl('min').value);
+  vars.max = parseFloat(getEl('max').value);
+  const f1 = Boolean(getEl('f1').checked);
+  const f2 = Boolean(getEl('f2').checked);
+  return { o1, o2, f1, f2 };
 }
 
 function round(num, dp = 2) {

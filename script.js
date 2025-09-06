@@ -1,7 +1,17 @@
 function main(log = false, logAll = false) {
     const start = Date.now();
-    const { min1, min2, max1, max2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol } =
+    const { step, perP, min1, min2, max1, max2, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol } =
         getVars();
+    const perPfn =  (perP && (f1 || f2)) ? (
+        f1 && f2 ? (
+            (i, ii) => i + ii
+        ) : f1 ? (
+            (i, ii) => i
+        ) : (
+            (i, ii) => ii
+    ) : (
+        (i, ii) => 1
+    );
     const emax1 = l1 ? round(max1 / (o1 - 1)) : max1;
     const emax2 = l2 ? round(max2 / (o2 - 1)) : max2;
 
@@ -24,7 +34,7 @@ function main(log = false, logAll = false) {
             list2.push({
                 s1: round(i),
                 s2: round(ii),
-                p: round(Math.min(p1, p2)),
+                p: round(Math.min(p1, p2) / perPfn(i, ii)),
             });
         }
         if (logAll) console.log(list2);
@@ -47,11 +57,12 @@ function display(result) {
 
 function getVars() {
     return {
+        step: parseFloat(getEl('step')?.value || 0.10),
+        perP: Boolean(getEl('per-p')?.checked || false),
         min1: parseFloat(getEl('min1')?.value || 0.1) ,
         min2: parseFloat(getEl('min2')?.value || 0.1),
         max1: parseFloat(getEl('max1')?.value || 10),
         max2: parseFloat(getEl('max2')?.value || 10),
-        step: parseFloat(getEl('step')?.value || 0.10),
         l1: Boolean(getEl('l1')?.checked || false),
         l2: Boolean(getEl('l2')?.checked || false),
         o1: parseFloat(getEl('o1')?.value),

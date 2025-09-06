@@ -2,8 +2,8 @@ function main(log = false, logAll = false) {
     const start = Date.now();
     const { min1, min2, max1, max2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol } =
         getVars();
-    const emax1 = l1 ? round(max1 / o1) : max1;
-    const emax2 = l2 ? round(max2 / o2) : max2;
+    const emax1 = l1 ? round(max1 / (o1 - 1)) : max1;
+    const emax2 = l2 ? round(max2 / (o2 - 1)) : max2;
 
     if (log) console.log(JSON.stringify({ min1, min2, max1, max2, emax1, emax2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
 
@@ -51,7 +51,7 @@ function getVars() {
         min2: parseFloat(getEl('min2')?.value || 0.1),
         max1: parseFloat(getEl('max1')?.value || 10),
         max2: parseFloat(getEl('max2')?.value || 10),
-        step: 0.01,
+        step: parseFloat(getEl('step')?.value || 0.10),
         l1: Boolean(getEl('l1')?.checked || false),
         l2: Boolean(getEl('l2')?.checked || false),
         o1: parseFloat(getEl('o1')?.value),

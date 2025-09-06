@@ -5,7 +5,7 @@ const step = 0.10;
 const steps = Math.round((max / step) - (min / step));
 const total = Math.pow(steps, 2);
 
-function main() {
+function main(log = false) {
   const start = Date.now();
   const { o1, o2} = getOs();
 
@@ -15,10 +15,12 @@ function main() {
     for (let ii = min; ii <= max; ii += step) {
       const p1 = round((o1 * i) - i - ii);
       const p2 = round((o2 * ii) - i - ii);
-      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2) });
+      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2), p1, p2 });
     }
+    if (log) console.log(list2);
     list.push(getMax(list2));
   }
+  if (log) console.log(list);
   const best = getMax(list);
   const end = Date.now();
   display(`s1: £${best.s1.toFixed(2)}, s2: £${best.s2.toFixed(2)}, p: £${best.p.toFixed(2)}, Time spent: ${humanify(start, end)}`);
@@ -40,7 +42,6 @@ function round(num, dp = 2) {
 }
 
 function getMax(list) {
-  console.log(list);
   function compare(current, next) {
     if (current.p < next.p) return next;
     return current;
@@ -49,7 +50,6 @@ function getMax(list) {
 }
 
 function humanify(d1, d2) {
-  try {
   let time = d2 - d1;
   const mins = Math.floor(time / (60 * 1000));
   time -= mins * 60 * 1000;
@@ -62,9 +62,6 @@ function humanify(d1, d2) {
   if (ms > 0) list.push(ms + 'ms');
   if (list.length === 0) return '';
   if (list.length === 1) return list[0];
-  } catch (e) {
-    console.error('FOUND IT ', e);
-  }
   return list.slice(-1).join(', ') + ' and ' + list[list.length - 1];
 }
 

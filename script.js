@@ -54,16 +54,16 @@ function getVars() {
         max1: parseFloat(getEl('max1')?.value || 10),
         max2: parseFloat(getEl('max2')?.value || 10),
         step: 0.1,
-        l1: Boolean(getEl('l1')?.value || false),
-        l2: Boolean(getEl('l2')?.value || false),
+        l1: Boolean(getEl('l1')?.checked || false),
+        l2: Boolean(getEl('l2')?.checked || false),
         o1: parseFloat(getEl('o1')?.value),
         o2: parseFloat(getEl('o2')?.value),
         f1: Boolean(getEl('f1')?.checked || false),
         f2: Boolean(getEl('f2')?.checked || false),
         c1: parseInt(getEl('c1')?.value || 0),
         c2: parseInt(getEl('c2')?.value || 0),
-        c1ol: Boolean(getEl('c1.1')?.value || false),
-        c2ol: Boolean(getEl('c2.1')?.value || false),
+        c1ol: Boolean(getEl('c1.1')?.checked || false),
+        c2ol: Boolean(getEl('c2.1')?.checked || false),
     };
 }
 

@@ -6,7 +6,7 @@ const vars = {
   total: 9801
 };
 
-function main() {
+function main(log = false) {
   const start = Date.now();
   const { o1, o2, f1, f2 } = getVars();
 
@@ -20,9 +20,12 @@ function main() {
       if (!f1) p2 -= i;
       list2.push({ s1: round(i), s2: round(ii), p: round(Math.min(p1, p2)) });
     }
+    if (log) console.log(list2);
     list.push(getMax(list2));
   }
+  if (log) console.log(list);
   const best = getMax(list);
+  if (log) console.log(best);
   const end = Date.now();
   display(`s1: £${best.s1.toFixed(2)}, s2: £${best.s2.toFixed(2)}, p: £${best.p.toFixed(2)}, Time spent: ${humanify(start, end)}`);
 }

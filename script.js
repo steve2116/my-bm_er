@@ -1,5 +1,5 @@
 const min = 0.10;
-const max = 20;
+const max = 50;
 const step = 0.10;
 
 const steps = Math.round((max / step) - (min / step));
@@ -15,13 +15,13 @@ function main() {
     for (let ii = min; ii < max; ii += step) {
       const p1 = round((o1 * i) - i - ii);
       const p2 = round((o2 * ii) - i - ii);
-      list2.push({ s1: round(i), s2: round(ii), p: Math.min(p1, p2) });
+      list2.push({ s1: round(i), s2: round(ii), p: p1 > p2 ? p2: p1 });
     }
     list.push(getMax(list2));
   }
-  const { s1, s2, p } = getMax(list);
+  const best = getMax(list);
   const end = Date.now();
-  display(`s1: ${s1}, s2: ${s2}, p: ${p}, Time spent: ${humanify(start, end)}`);
+  display(`s1: £${best.s1.toFixed(2)}, s2: £${best.s2.toFixed(2)}, p: £${best.p.toFixed(2)}, Time spent: ${humanify(start, end)}`);
 }
 
 function display(result) {

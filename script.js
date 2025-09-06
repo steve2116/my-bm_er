@@ -7,7 +7,7 @@ const total = Math.pow(steps, 2);
 
 function main(log = false) {
   const start = Date.now();
-  const { o1, o2} = getOs();
+  const { o1, o2 } = getOs();
 
   const list = [];
   for (let i = min; i <= max; i += step) {
@@ -31,7 +31,7 @@ function display(result) {
 }
 
 function getOs() {
-  const o1 = parseFloat(getEl('o2').value);
+  const o1 = parseFloat(getEl('o1').value);
   const o2 = parseFloat(getEl('o2').value);
   return { o1, o2 };
 }

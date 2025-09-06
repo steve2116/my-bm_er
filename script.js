@@ -9,6 +9,7 @@ function main(log = false, logAll = false) {
             (i, ii) => i
         ) : (
             (i, ii) => ii
+        )
     ) : (
         (i, ii) => 1
     );

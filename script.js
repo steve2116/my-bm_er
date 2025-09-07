@@ -160,7 +160,7 @@ function getMax(list, p) {
     if (maxs[0][p] === next[p]) return maxs.concat(next);
     return maxs;
   }
-  return flist.reduce(compare, [{ p: -Number.MAX_VALUE }]);
+  return flist.reduce(compare, [{ [p]: -Number.MAX_VALUE }]);
 }
 
 /** @param {number} d1 @param {number} d2 */

@@ -66,12 +66,12 @@ function main(log = false, logAll = false) {
     const list2 = [];
     for (let ii = emin2; ii <= emax2; ii += step) {
       /* First */
-      let p1 = l1 ? o1 : o1 * i - i;
+      let p1 = l1 ? i : o1 * i - i;
       if (c1 > 0 && (p1 > 0 || c1ol)) p1 *= (100 - c1) / 100;
       if (!f2) p1 -= l2 ? unlay(ii, o2) : o2;
 
       /* Second */
-      let p2 = l2 ? o2 : o2 * ii - ii;
+      let p2 = l2 ? ii : o2 * ii - ii;
       if (c2 > 0 && (p2 > 0 || c2ol)) p2 *= (100 - c2) / 100;
       if (!f1) p2 -= l1 ? unlay(i, o1) : o1;
 

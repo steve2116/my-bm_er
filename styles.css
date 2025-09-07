@@ -3,7 +3,7 @@
 }
 
 #result {
-    font-size: 3rem;
+    font-size: 2.3rem;
 }
 
 main {
@@ -19,13 +19,14 @@ header {
     align-items: center;
 }
 
-header > h1 {
+header>h1 {
     text-align: center;
 }
 
 h1 {
     font-size: 2rem;
 }
+
 h3 {
     font-size: 1.6rem;
 }
@@ -37,7 +38,7 @@ h3 {
     margin-top: 20px;
 }
 
-#holder > button {
+#holder>button {
     width: 20%;
 }
 
@@ -47,13 +48,13 @@ h3 {
     padding: 5px;
 }
 
-.input-pair > label {
+.input-pair>label {
     grid-area: label;
     width: 75%;
     align-self: flex-start;
 }
 
-.input-pair > input {
+.input-pair>input {
     grid-area: input;
     width: 25%;
     align-self: flex-end;

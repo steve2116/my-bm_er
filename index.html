@@ -1,194 +1,163 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Don't ask...</title>
-        <link
-            rel="stylesheet"
-            href="./styles.css"
-        />
-    </head>
-    <script src="./script.js"></script>
-    <body>
-        <header>
-            <h1>Totally cool and legit thing</h1>
-        </header>
-        <main>
-            <section id="settings">
-                <h3>Settings</h3>
-                <section class="input-pair">
-                    <label for="step">Step</label>
-                    <input
-                        id="step"
-                        name="step"
-                        type="number"
-                        placeholder="0.10"
-                        value="0.10"
-                        step="0.01"
-                        min="0.01"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="per-p">Profit per Free £?</label>
-                    <input
-                        id="per-p"
-                        name="per-p"
-                        type="checkbox"
-                    />
-                </section>
-            </section>
-            <section id="first">
-                <h3>First</h3>
-                <section class="input-pair">
-                    <label for="m1">Min</label>
-                    <input
-                        id="min1"
-                        name="min1"
-                        type="number"
-                        placeholder="0.10"
-                        value="0.10"
-                        step="0.01"
-                        min="0.01"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="max1">Max</label>
-                    <input
-                        id="max1"
-                        name="max1"
-                        type="number"
-                        placeholder="10.00"
-                        value="10.00"
-                        step="0.01"
-                        min="0.01"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="l1">Lay?</label>
-                    <input
-                        id="l1"
-                        name="l1"
-                        type="checkbox"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="o1">Odds</label>
-                    <input
-                        id="o1"
-                        name="o1"
-                        type="number"
-                        placeholder="2.00"
-                        step="0.01"
-                        min="1"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="f1">Free?</label>
-                    <input
-                        id="f1"
-                        name="f1"
-                        type="checkbox"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="c1.1">Commission on losses?</label>
-                    <input
-                        id="c1.1"
-                        name="c1.1"
-                        type="checkbox"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="c1">Commission %</label>
-                    <input
-                        id="c1"
-                        name="c1"
-                        type="number"
-                        placeholder="0"
-                        value="0"
-                        step="1"
-                        min="0"
-                        max="100"
-                    />
-                </section>
-            </section>
-            <section id="second">
-                <h3>Second</h3>
-                <section class="input-pair">
-                    <label for="min2">Min</label>
-                    <input
-                        id="min2"
-                        name="min2"
-                        type="number"
-                        placeholder="0.10"
-                        value="0.10"
-                        step="0.01"
-                        min="0.01"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="max2">Max</label>
-                    <input
-                        id="max2"
-                        name="max2"
-                        type="number"
-                        placeholer="10.00"
-                        value="10.00"
-                        step="0.01"
-                        min="0.01"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="l1">Lay?</label>
-                    <input
-                        id="l2"
-                        name="l2"
-                        type="checkbox"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="o2">Odds</label>
-                    <input
-                        id="o2"
-                        name="o2"
-                        type="number"
-                        placeholder="2.00"
-                        step="0.01"
-                        min="1"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="f2">Free?</label>
-                    <input
-                        id="f2"
-                        name="f2"
-                        type="checkbox"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="c2.1">Commission on losses?</label>
-                    <input
-                        id="c2.1"
-                        name="c2.1"
-                        type="checkbox"
-                    />
-                </section>
-                <section class="input-pair">
-                    <label for="c2">Commission %</label>
-                    <input
-                        id="c2"
-                        name="c2"
-                        type="number"
-                        placeholder="0"
-                        step="1"
-                        min="0"
-                        max="100"
-                    />
-                </section>
-            </section>
-        </main>
-        <div id="holder">
-            <button onclick="main()">Calculate</button>
-            <p id="result"></p>
-        </div>
-    </body>
+  <head>
+    <title>Don't ask...</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <script src="./script.js"></script>
+  <body>
+    <header>
+      <h1>Totally cool and legit thing</h1>
+    </header>
+    <main>
+      <section id="settings">
+        <h3>Settings</h3>
+        <section class="input-pair">
+          <label for="step">Step</label>
+          <input
+            id="step"
+            name="step"
+            type="number"
+            placeholder="0.10"
+            value="0.10"
+            step="0.01"
+            min="0.01"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="per-p">Profit per Free £?</label>
+          <input id="per-p" name="per-p" type="checkbox" />
+        </section>
+      </section>
+      <section id="first">
+        <h3>First</h3>
+        <section class="input-pair">
+          <label for="m1">Min</label>
+          <input
+            id="min1"
+            name="min1"
+            type="number"
+            placeholder="0.10"
+            value="0.10"
+            step="0.01"
+            min="0.01"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="max1">Max</label>
+          <input
+            id="max1"
+            name="max1"
+            type="number"
+            placeholder="10.00"
+            value="10.00"
+            step="0.01"
+            min="0.01"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="l1">Lay?</label>
+          <input id="l1" name="l1" type="checkbox" />
+        </section>
+        <section class="input-pair">
+          <label for="o1">Odds</label>
+          <input
+            id="o1"
+            name="o1"
+            type="number"
+            placeholder="2.00"
+            step="0.01"
+            min="1"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="f1">Free?</label>
+          <input id="f1" name="f1" type="checkbox" />
+        </section>
+        <section class="input-pair">
+          <label for="c1.1">Commission on losses?</label>
+          <input id="c1.1" name="c1.1" type="checkbox" />
+        </section>
+        <section class="input-pair">
+          <label for="c1">Commission %</label>
+          <input
+            id="c1"
+            name="c1"
+            type="number"
+            placeholder="0"
+            value="0"
+            step="1"
+            min="0"
+            max="100"
+          />
+        </section>
+      </section>
+      <section id="second">
+        <h3>Second</h3>
+        <section class="input-pair">
+          <label for="min2">Min</label>
+          <input
+            id="min2"
+            name="min2"
+            type="number"
+            placeholder="0.10"
+            value="0.10"
+            step="0.01"
+            min="0.01"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="max2">Max</label>
+          <input
+            id="max2"
+            name="max2"
+            type="number"
+            placeholer="10.00"
+            value="10.00"
+            step="0.01"
+            min="0.01"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="l1">Lay?</label>
+          <input id="l2" name="l2" type="checkbox" />
+        </section>
+        <section class="input-pair">
+          <label for="o2">Odds</label>
+          <input
+            id="o2"
+            name="o2"
+            type="number"
+            placeholder="2.00"
+            step="0.01"
+            min="1"
+          />
+        </section>
+        <section class="input-pair">
+          <label for="f2">Free?</label>
+          <input id="f2" name="f2" type="checkbox" />
+        </section>
+        <section class="input-pair">
+          <label for="c2.1">Commission on losses?</label>
+          <input id="c2.1" name="c2.1" type="checkbox" />
+        </section>
+        <section class="input-pair">
+          <label for="c2">Commission %</label>
+          <input
+            id="c2"
+            name="c2"
+            type="number"
+            placeholder="0"
+            step="1"
+            min="0"
+            max="100"
+          />
+        </section>
+      </section>
+    </main>
+    <div id="holder">
+      <button onclick="main()">Calculate</button>
+      <p id="result"></p>
+    </div>
+  </body>
 </html>

@@ -101,13 +101,15 @@ function main(log = false, logAll = false) {
   const best = getMax(list, perP ? "pp" : "p");
   if (log) console.log(best);
   const strs = [];
-  strs.push(
-    `s1: £${best[0]?.s1.toFixed(2)}, s2: £${best[0]?.s2.toFixed(
-      2
-    )}, p: £${best[0]?.p.toFixed(2)}, pp: £${best[0]?.pp.toFixed(2)}`
-  );
   const end = Date.now();
   strs.push(`Time spent: ${humanify(start, end)}`);
+  best.forEach(({ s1, s2, p, pp }) => {
+    strs.push(
+      `s1: £${s1.toFixed(2)}, s2: £${s2.toFixed(2)}, p: £${p.toFixed(
+        2
+      )}, pp: £${pp.toFixed(2)}`
+    );
+  });
   display(strs);
 }
 

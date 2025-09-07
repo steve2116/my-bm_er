@@ -114,14 +114,15 @@ function main(log = false, logAll = false) {
 /** @param {Array<string>} result */
 function display(result) {
   const holder = getEl("p-holder");
-  holder.childNodes.forEach((n) => n.remove());
-  result.forEach((r) => {
-    if (/[></]/.test(r)) return;
-    const tag = document.createElement("p");
-    tag.classList.add("result");
-    tag.innerHTML = r;
-    holder.appendChild(tag);
-  });
+  holder.replaceChildren(
+    ...result.map((r) => {
+      if (/[></]/.test(r)) return;
+      const tag = document.createElement("p");
+      tag.classList.add("result");
+      tag.innerHTML = r;
+      return tag;
+    })
+  );
 }
 
 function getVars() {

@@ -19,13 +19,11 @@ function main(log = false, logAll = false) {
     c2ol,
   } = getVars();
   const perPfn =
-    perP && (f1 || f2)
-      ? f1 && f2
-        ? (i, ii) => (l1 ? unlay(i, o1) : i) + (l2 ? unlay(ii, o2) : ii)
-        : f1
-        ? (i, ii) => (l1 ? unlay(i, o1) : i)
-        : (i, ii) => (l2 ? unlay(ii, o2) : ii)
-      : (i, ii) => 1;
+    f1 && f2
+      ? (i, ii) => (l1 ? unlay(i, o1) : i) + (l2 ? unlay(ii, o2) : ii)
+      : f1
+      ? (i, ii) => (l1 ? unlay(i, o1) : i)
+      : (i, ii) => (l2 ? unlay(ii, o2) : ii);
   const emin1 = l1 ? lay(min1, o1) : min1;
   const emax1 = l1 ? lay(max1, o1) : max1;
   const emin2 = l2 ? lay(min2, o2) : min2;
@@ -97,17 +95,12 @@ function main(log = false, logAll = false) {
       });
     }
     if (logAll) console.log(list2);
-    list.push(...getMax(list2));
+    list.push(...getMax(list2, perP ? "pp" : "p"));
   }
   if (logAll) console.log(list);
-  const best = getMax(list);
+  const best = getMax(list, perP ? "pp" : "p");
   if (log) console.log(best);
   const strs = [];
-  // best.forEach(({ s1, s2, p, pp }) =>
-  //   strs.push(
-  //     `s1: £${s1.toFixed(2)}, s2: £${s2.toFixed(2)}, p: £${p.toFixed(2)}, pp: £${pp.toFixed(2)}`
-  //   )
-  // );
   strs.push(
     `s1: £${best[0]?.s1.toFixed(2)}, s2: £${best[0]?.s2.toFixed(
       2
@@ -157,14 +150,14 @@ function round(num, dp = 2) {
   return Math.round(num * by) / by;
 }
 
-/** @param {Array<{ pp: number }>} list */
-function getMax(list) {
-  const flist = list.filter((v) => typeof v?.pp === "number");
+/** @param {Array<{ pp: number }>} list @param {'p' | 'pp'} p */
+function getMax(list, p) {
+  const flist = list.filter((v) => typeof v?.[p] === "number");
   if (flist.length === 0) return [];
   if (flist.length === 1) return list.slice();
   function compare(maxs, next) {
-    if (maxs[0].pp < next.pp) return [next];
-    if (maxs[0].pp === next.pp) return maxs.concat(next);
+    if (maxs[0][p] < next[p]) return [next];
+    if (maxs[0][p] === next[p]) return maxs.concat(next);
     return maxs;
   }
   return flist.reduce(compare, [{ p: -Number.MAX_VALUE }]);

@@ -78,7 +78,8 @@ function main(log = false, logAll = false) {
       list2.push({
         s1: round(i),
         s2: round(ii),
-        p: round(Math.min(p1, p2) / perPfn(i, ii)),
+        p: round(Math.min(p1, p2)),
+        pp: round(Math.min(p1, p2) / perPfn(i, ii)),
         ...(logAll
           ? {
               p1,
@@ -144,14 +145,14 @@ function round(num, dp = 2) {
   return Math.round(num * by) / by;
 }
 
-/** @param {Array<{ p: number }>} list */
+/** @param {Array<{ pp: number }>} list */
 function getMax(list) {
-  const flist = list.filter((v) => typeof v?.p === "number");
+  const flist = list.filter((v) => typeof v?.pp === "number");
   if (flist.length === 0) return [];
   if (flist.length === 1) return list.slice();
   function compare(maxs, next) {
-    if (maxs[0].p < next.p) return [next];
-    if (maxs[0].p === next.p) return maxs.concat(next);
+    if (maxs[0].pp < next.pp) return [next];
+    if (maxs[0].pp === next.pp) return maxs.concat(next);
     return maxs;
   }
   return flist.reduce(compare, [{ p: -Number.MAX_VALUE }]);

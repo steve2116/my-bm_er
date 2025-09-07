@@ -15,10 +15,10 @@ function main(log = false, logAll = false) {
     ) : (
         (i, ii) => 1
     );
-    const emin1 = l1 ? round(min1 / (o1 - 1)) : min1;
-    const emax1 = l1 ? round(max1 / (o1 - 1)) : max1;
-    const emin2 = l2 ? round(min2 / (o2 - 1)) : min2;
-    const emax2 = l2 ? round(max2 / (o2 - 1)) : max2;
+    const emin1 = l1 ? lay(min1, o1) : min1;
+    const emax1 = l1 ? lay(max1, o1) : max1;
+    const emin2 = l2 ? lay(min2, o2) : min2;
+    const emax2 = l2 ? lay(max2, o2) : max2;
 
     if (log) console.log(JSON.stringify({ step, perP, min1, min2, emin1, emin2, max1, max2, emax1, emax2, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
 
@@ -29,12 +29,12 @@ function main(log = false, logAll = false) {
             /* First */
             let p1 = l1 ? o1 : (o1 * i - i);
             if (c1 > 0 && (p1 > 0 || c1ol)) p1 *= (100 - c1) / 100;
-            if (!f2) p1 -= ii;
+            if (!f2) p1 -= l2 ? unlay(ii, o2) : o2;
 
             /* Second */
             let p2 = l2 ? o2 : (o2 * ii - ii);
             if (c2 > 0 && (p2 > 0 || c2ol)) p2 *= (100 - c2) / 100;
-            if (!f1) p2 -= i;
+            if (!f1) p2 -= l1 ? unlay(i, o1) : o1;
 
             list2.push({
                 s1: round(i),
@@ -115,4 +115,12 @@ function humanify(d1, d2) {
 
 function getEl(name) {
     return document.getElementById(name);
+}
+
+function lay(s, o) {
+    return round(s / (o - 1));
+}
+
+function unlay(s, o) {
+    return round(s * (o - 1));
 }

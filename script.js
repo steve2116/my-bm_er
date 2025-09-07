@@ -115,7 +115,7 @@ function main(log = false, logAll = false) {
   );
   const end = Date.now();
   strs.push(`Time spent: ${humanify(start, end)}`);
-  display(strs.join("\n\n"));
+  display(strs.join('</p><p id="result">'));
 }
 
 /** @param {string} result */

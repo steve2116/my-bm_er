@@ -43,20 +43,29 @@ h3 {
     width: 20%;
 }
 
-.input-pair {
+.input-pair,
+.input-pair-pair {
     display: flex;
     width: 100%;
     padding: 5px;
 }
 
 .input-pair>label {
-    grid-area: label;
     width: 75%;
     align-self: flex-start;
 }
 
 .input-pair>input {
-    grid-area: input;
     width: 25%;
     align-self: flex-end;
+}
+
+.input-pair-pair>label {
+    width: 50%;
+    align-self: flex-start;
+}
+
+.input-pair-pair>input {
+    width: 25%;
+    align-self: flex-end
 }

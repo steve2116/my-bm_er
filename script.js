@@ -21,10 +21,10 @@ function main(log = false, logAll = false) {
   const perPfn =
     perP && (f1 || f2)
       ? f1 && f2
-        ? (i, ii) => i + ii
+        ? (i, ii) => (l1 ? unlay(i, o1) : i) + (l2 ? unlay(ii, o2) : ii)
         : f1
-        ? (i, ii) => i
-        : (i, ii) => ii
+        ? (i, ii) => (l1 ? unlay(i, o1) : i)
+        : (i, ii) => (l2 ? unlay(ii, o2) : ii)
       : (i, ii) => 1;
   const emin1 = l1 ? lay(min1, o1) : min1;
   const emax1 = l1 ? lay(max1, o1) : max1;

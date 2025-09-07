@@ -150,11 +150,12 @@ function round(num, dp = 2) {
   return Math.round(num * by) / by;
 }
 
-/** @param {Array<{ pp: number }>} list @param {'p' | 'pp'} p */
+/** @param {Array<{ p: number } | { pp: number }>} list @param {'p' | 'pp'} p */
 function getMax(list, p) {
   const flist = list.filter((v) => typeof v?.[p] === "number");
   if (flist.length === 0) return [];
   if (flist.length === 1) return list.slice();
+  /** @param {typeof list} maxs @param {typeof list} next */
   function compare(maxs, next) {
     if (maxs[0][p] < next[p]) return [next];
     if (maxs[0][p] === next[p]) return maxs.concat(next);

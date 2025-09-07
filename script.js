@@ -5,10 +5,12 @@ function main(log = false, logAll = false) {
     const perPfn =  (perP && (f1 || f2)) ? (
         f1 && f2 ? (
             (i, ii) => i + ii
-        ) : f1 ? (
-            (i, ii) => i
         ) : (
-            (i, ii) => ii
+            f1 ? (
+                (i, ii) => i
+            ) : (
+                (i, ii) => ii
+            )
         )
     ) : (
         (i, ii) => 1
@@ -16,19 +18,19 @@ function main(log = false, logAll = false) {
     const emax1 = l1 ? round(max1 / (o1 - 1)) : max1;
     const emax2 = l2 ? round(max2 / (o2 - 1)) : max2;
 
-    if (log) console.log(JSON.stringify({ min1, min2, max1, max2, emax1, emax2, step, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
+    if (log) console.log(JSON.stringify({ step, perP, min1, min2, max1, max2, emax1, emax2, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
 
     const list = [];
     for (let i = min1; i <= emax1; i += step) {
         const list2 = [];
         for (let ii = min2; ii <= emax2; ii += step) {
             /* First */
-            let p1 = o1 * i - i;
+            let p1 = l1 ? o1 : (o1 * i - i);
             if (c1 > 0 && (p1 > 0 || c1ol)) p1 *= (100 - c1) / 100;
             if (!f2) p1 -= ii;
 
             /* Second */
-            let p2 = o2 * ii - ii;
+            let p2 = l2 ? o2 : (o2 * ii - ii);
             if (c2 > 0 && (p2 > 0 || c2ol)) p2 *= (100 - c2) / 100;
             if (!f1) p2 -= i;
 

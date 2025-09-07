@@ -118,9 +118,16 @@ function main(log = false, logAll = false) {
   display(strs.join('</p><p class="result">'));
 }
 
-/** @param {string} result */
+/** @param {Array<string>} result */
 function display(result) {
-  getEl("result").innerHTML = result;
+  const holder = getEl("p-holder");
+  result.forEach((r) => {
+    if (/[></]/.test(r)) return;
+    const tag = document.createElement("p");
+    tag.classList.add("result");
+    tag.innerHTML = r;
+    holder.appendChild(tag);
+  });
 }
 
 function getVars() {

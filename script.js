@@ -76,8 +76,8 @@ function main(log = false, logAll = false) {
       list2.push({
         s1: round(i),
         s2: round(ii),
-        p: round(Math.min(p1, p2)),
-        pp: round(Math.min(p1, p2) / perPfn(i, ii)),
+        p: Math.min(p1, p2),
+        pp: Math.min(p1, p2) / perPfn(i, ii),
         ...(logAll
           ? {
               p1,
@@ -105,9 +105,9 @@ function main(log = false, logAll = false) {
   strs.push(`Time spent: ${humanify(start, end)}`);
   best.forEach(({ s1, s2, p, pp }) => {
     strs.push(
-      `s1: £${s1.toFixed(2)}, s2: £${s2.toFixed(2)}, p: £${p.toFixed(
+      `s1: £${s1.toFixed(2)}, s2: £${s2.toFixed(2)}, p: £${round(p).toFixed(
         2
-      )}, pp: £${pp.toFixed(2)}`
+      )}, pp: £${round(pp).toFixed(2)}`
     );
   });
   display(strs);

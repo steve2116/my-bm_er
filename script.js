@@ -89,7 +89,7 @@ function main(log = false, logAll = false) {
   if (log) console.log(best);
   const end = Date.now();
   const strs = [];
-  best.map(({ s1, s2, p }) =>
+  best.forEach(({ s1, s2, p }) =>
     strs.push(
       `s1: £${s1.toFixed(2)}, s2: £${s2.toFixed(2)}, p: £${p.toFixed(2)}`
     )

@@ -79,6 +79,20 @@ function main(log = false, logAll = false) {
         s1: round(i),
         s2: round(ii),
         p: round(Math.min(p1, p2) / perPfn(i, ii)),
+        ...(logAll
+          ? {
+              p1,
+              p2,
+              c1,
+              c1v: (100 - c1) / 100,
+              c2,
+              c2v: (100 - c2) / 100,
+              sp1: l1 ? o1 : o1 * i - i,
+              sp2: l2 ? o2 : o2 * ii - ii,
+              f1: l1 ? unlay(i, o1) : o1,
+              f2: l2 ? unlay(ii, o2) : o2,
+            }
+          : {}),
       });
     }
     if (logAll) console.log(list2);
@@ -87,15 +101,15 @@ function main(log = false, logAll = false) {
   if (logAll) console.log(list);
   const best = getMax(list);
   if (log) console.log(best);
-  const end = Date.now();
   const strs = [];
   best.forEach(({ s1, s2, p }) =>
     strs.push(
       `s1: £${s1.toFixed(2)}, s2: £${s2.toFixed(2)}, p: £${p.toFixed(2)}`
     )
   );
+  const end = Date.now();
   strs.push(`Time spent: ${humanify(start, end)}`);
-  display(strs.join("\n"));
+  display(strs.join("\n\n"));
 }
 
 /** @param {string} result */

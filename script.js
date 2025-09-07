@@ -15,15 +15,17 @@ function main(log = false, logAll = false) {
     ) : (
         (i, ii) => 1
     );
+    const emin1 = l1 ? round(min1 / (o1 - 1)) : min1;
     const emax1 = l1 ? round(max1 / (o1 - 1)) : max1;
+    const emin2 = l2 ? round(min2 / (o2 - 1)) : min2;
     const emax2 = l2 ? round(max2 / (o2 - 1)) : max2;
 
-    if (log) console.log(JSON.stringify({ step, perP, min1, min2, max1, max2, emax1, emax2, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
+    if (log) console.log(JSON.stringify({ step, perP, min1, min2, emin1, emin2, max1, max2, emax1, emax2, l1, l2, o1, o2, f1, f2, c1, c2, c1ol, c2ol }, null, 2));
 
     const list = [];
-    for (let i = min1; i <= emax1; i += step) {
+    for (let i = emin1; i <= emax1; i += step) {
         const list2 = [];
-        for (let ii = min2; ii <= emax2; ii += step) {
+        for (let ii = emin2; ii <= emax2; ii += step) {
             /* First */
             let p1 = l1 ? o1 : (o1 * i - i);
             if (c1 > 0 && (p1 > 0 || c1ol)) p1 *= (100 - c1) / 100;
@@ -85,13 +87,14 @@ function round(num, dp = 2) {
 }
 
 function getMax(list) {
-    if (list.length === 0) return;
-    if (list.length === 1) return list[0];
+    const flist = list.filter(v => !!v?.p);
+    if (flist.length === 0) return;
+    if (flist.length === 1) return list[0];
     function compare(current, next) {
         if (current.p < next.p) return next;
         return current;
     }
-    return list.reduce(compare);
+    return flist.reduce(compare);
 }
 
 function humanify(d1, d2) {
